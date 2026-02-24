@@ -1,0 +1,91 @@
+---
+title: "STAT 380 HW #1.4 Model Selection and Validation"
+author: "Abby Sine"
+format: html
+date: now
+---
+
+## Due: Sunday, March, 1st by 11:59 PM## 
+### IMPORTANT: You can only use ONE Late Pass on this assignment so solutions can be posted before the exam!###
+
+## Instructions
+
+In class, we discussed the validation set approach and cross validation for assessing and comparing the predictive ability of models using "new" data. We also introduced multiple methods for selecting the features to be included in a model (forward, backward, step-wise, LASSO).The activities that follow are meant to provide further practice with these concepts. You should insert code chunks and/or text to answer each of the questions below. Text-based answers should be complete sentences.
+
+At the conclusion to the activity, you should upload
+
+1. your .html file named LastnameFirstInitial_STAT380_HW1_4.html 
+2. your .qmd file named LastnameFirstInitial_STAT380_HW1_4.qmd
+
+to Question 1 of the HW #1.4 Assignment in MyOpenMath.
+
+## Context: Baseball Data 
+
+`MLB.csv` contains information about a sample of Major League Baseball (MLB) players from the 1986 and 1987 seasons. Variables include:
+
+* PlayerName-Player’s name
+* AtBat-Number of times at bat in 1986
+* Hits-Number of hits in 1986
+* HmRun-Number of home runs in 1986
+* Runs-Number of runs in 1986
+* RBI-Number of runs batted in in 1986
+* Walks-Number of walks in 1986
+* Years-Number of years in the major leagues
+* CAtBat-Number of times at bat during his career
+* Chits-Number of hits during his career
+* CHmRun-Number of home runs during his career
+* CRuns-Number of runs during his career
+* CRBI-Number of runs batted in during his career
+* CWalks-Number of walks during his career
+* League-factor with levels A (for American) and N (for National) indicating player's league at the end of 1986
+* Division-factor with levels E (for East) and W (for West) indicating player's division at the end of 1986
+* PutOuts-Number of put outs in 1986
+* Assists-Number of assists in 1986
+* Errors-Number of errors in 1986
+* Salary-1987 annual salary on opening day in thousands of dollars
+* NewLeague-factor with levels A (for American) and N (for National) indicating player's league at the beginning of 1987
+
+**Our goal is to predict a baseball player’s 1987 salary on the basis of the other variables in the dataset (excluding player name).**
+
+## Problem 1: Prepping the Data
+##### a. Load the dataset and any packages you'll need throughout the assignment here. Remove the `PlayerName` column and any players with a missing salary. Name the result `MLB2`. NOTE: `MLB2` should have 263 observations and 20 variables.
+
+##### b. Using a seed of 735, perform an 85/15 training/validation split. We will use the validation set approach to assess how well competing models are able to generalize to "new" data. 
+
+##### c. In order to use the `glmnet` and/or `cv.glmnet` function for building LASSO regression models, create the input matrix and response variable vector for both your training and validation data.
+
+NOTE: For the following questions, you should know whether you are building the models using the full dataset, the training set, or the validation set. Similarly, you should know whether we are calculating RMSE based on the full dataset, the training set, or the validation set.
+
+## Problem 2: Subset Selection
+
+##### a. Perform backward elimination for selecting the "best" subset of predictors for predicting salary using AIC. Which variables remain in the model?
+
+##### b. Perform backward elimination for selecting the "best" subset of predictors for predicting salary this time using BIC as your measure of performance. Which variables remain in the model?
+
+##### c. Compare the variables selected by changing our performance metric from BIC to AIC. Which model is more complex? Why is this the case?
+
+##### d. Choose a third subset selection method from the ones we discussed in class. Report the method you chose and your performance metric (e.g. "Backward selection using BIC as the performance metric"). What variables are selected through this process?
+
+##### e. Compute the RMSE for each of these three models and report them in a table below. 
+
+## Problem 3: LASSO
+
+##### a. Using a seed of 12345 and 10-fold cross validation on the training data, use the `cv.glmnet` function to create the plot of MSE as a function of $log(\lambda)$. NOTE: The seed mentioned in this problem should not be used to repeat the training/validation split. Instead, it is the seed for the `cv.glmnet` function which will do the 10-fold cross validation for you.
+
+##### b. What is the optimal $\lambda$ for LASSO regression based on using the minimum value of MSE rule? Which variables are included using this value of $\lambda$? 
+
+##### c. What is the optimal $\lambda$ for LASSO regression based on using the 1-standard error (1SE) rule? Which variables are included using this value of $\lambda$? 
+
+##### d. Compare the sets of variables included based on our choice of optimal $\lambda$. Which set is smaller? Why is that the case?
+
+##### e. Using the value of $\lambda$ associated with the 1-standard error rule, report the LASSO regression model.
+
+$$\hat{Salary} = ...$$
+
+##### f. Compute **and interpret** the RMSE for the LASSO model associated with the 1-standard error rule. (Hint: You need to fit the model with the selected $\lambda$ first!)
+
+## Problem 4: Comparing Models
+
+##### a. We've now considered four different processes for selecting a model for MLB player's salary. Which model of the four is preferred based on each model's ability to general to "new" data? Explain your reasoning.
+
+##### b. We know that these automated procedures can face issues with overfitting, so we should consider the produced model as a **candidate** model. What is one thing we may need to consider after model selection?
