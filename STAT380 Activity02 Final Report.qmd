@@ -1,0 +1,51 @@
+---
+title: "STAT380 Activity 02"
+author: "Grace Rovinsky, Min Liu, Jiya Patel"
+format: pdf
+---
+
+## I. Introduction/Background
+
+
+## II. Data Exploration
+A description of the data that incorporates visualizations, descriptive/incisive statistics, and narrative text describing the data (i.e., EDA)
+```{r}
+#| echo: false
+
+```
+
+## III. Modeling Methods/Strategies
+At least two candidate models, professional looking discussion of the candidate models and the process by which you arrived at them. All decisions should be documented and justified.
+
+## IV. Results
+A. Initial Results
+
+B. Interpretations
+Interpretations of Model Coefficients and Intercept
+
+C. Model Evaluation
+Discussion of the candidate/final model, Evaluation/Validation of the Candidate and Final Model(s): Build as complete of a body of evidence both for and against your candidate/final model.
+
+D. Refinements
+
+## V. Final Recommendations
+A paragraph to summarize your recommended model and key findings.
+
+## VI. Author Contributions/Responsibilities
+
+# VII. Code Appendix
+```{r}
+#| echo: false
+## Read dataset
+insurance_data <- read.csv("~/Downloads/insurance_data_S26.csv")
+```
+
+
+1. Have investigated the data as fully as possible to help you build your understanding of the data: A description of the data that incorporates visualizations, descriptive/incisive statistics, and narrative text describing the data (i.e., EDA)
+2. The generation of at least two candidate models, professional looking discussion of the candidate models and the process by which you arrived at them. All decisions should be documented and justified.
+3. Interpretations of Model Coefficients and Intercept: Discussion of the candidate/final model
+4. Evaluation/Validation of the Candidate and Final Model(s): Build as complete of a body of evidence both for and against your candidate/final model.
+5. Final recommendation to the Nittany Valley Insurance Company: A paragraph to summarize your recommended model and key findings.
+6. Author Contributions/Responsibilities section
+7. Code Appendix
+8. The report should mix data visualizations (plots, graphs, tables), values of statistics (descriptive, incisive, inferential–as applicable), and narrative text.
