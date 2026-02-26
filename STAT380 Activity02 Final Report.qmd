@@ -5,17 +5,46 @@ format: pdf
 ---
 
 ## I. Introduction/Background
-The Nittany Valley Insurance Company wants to develop a predictive model for health insurance policy charges based on beneficiary characteristics. Understanding the factors that influece insurance costs enables more accurate pricing, risk assesment, and resource allocation. The objective is to build a linear regression model that predicts total medical charges billed to the policy based on available predictor variables. The analysis follows the modeling cycle: exploratory data analysis, model buildings, evaluation, and refinement to deliver actionable insights to the insurance company.
 
 ## II. Data Exploration
 A description of the data that incorporates visualizations, descriptive/incisive statistics, and narrative text describing the data (i.e., EDA)
 ```{r}
 #| echo: false
-The data contains 1,338 observations with 9 variables: age, sex, bmi, children, smoker, region, charges, month, priorclaims.
+# add narrative text for each visualization
+# Descriptive:
+#1. Insurance holder ages per region
+ggplot(insurance_data, aes(x = age, y = region)) +
+  geom_dotplot(binwidth = 0.2)
+#2. Sex of insurance holder vs number of prior claims
+ggplot(insurance_data) +
+ aes(x = priorclaims, y = sex, fill = smoker) +
+ geom_boxplot() +
+ scale_fill_hue(direction = 1) +
+ theme_minimal()
+#3. Insurance holder age vs total charges
+ggplot(insurance_data, aes(x=age, y=charges))+
+  geom_hex(bins=20, linewidth = 1)
+
+# Inferential: confidence interval/regression line
+
 ```
 
 ## III. Modeling Methods/Strategies
 At least two candidate models, professional looking discussion of the candidate models and the process by which you arrived at them. All decisions should be documented and justified.
+- Multiple linear regression
+```{r}
+# Model 1
+insuranceData <- data.frame(insurance_data)
+insuranceData <- insuranceData %>%
+  mutate(
+    smokes = ifelse(smoker == "yes", 1, 0))
+View(insuranceData)
+insuranceModel1 <- lm(charges ~ age + smokes + priorclaims, data = insuranceData)
+summary(insuranceModel1)
+
+# Model 2:
+
+```
 
 ## IV. Results
 A. Initial Results
@@ -36,16 +65,16 @@ A paragraph to summarize your recommended model and key findings.
 # VII. Code Appendix
 ```{r}
 #| echo: false
+
+## Load necessary packages
+library(tidyverse)
+library(ggplot2)
+library(esquisse)
+
 ## Read dataset
 insurance_data <- read.csv("~/Downloads/insurance_data_S26.csv")
+
 ```
 
-
-1. Have investigated the data as fully as possible to help you build your understanding of the data: A description of the data that incorporates visualizations, descriptive/incisive statistics, and narrative text describing the data (i.e., EDA)
-2. The generation of at least two candidate models, professional looking discussion of the candidate models and the process by which you arrived at them. All decisions should be documented and justified.
-3. Interpretations of Model Coefficients and Intercept: Discussion of the candidate/final model
-4. Evaluation/Validation of the Candidate and Final Model(s): Build as complete of a body of evidence both for and against your candidate/final model.
-5. Final recommendation to the Nittany Valley Insurance Company: A paragraph to summarize your recommended model and key findings.
-6. Author Contributions/Responsibilities section
-7. Code Appendix
-8. The report should mix data visualizations (plots, graphs, tables), values of statistics (descriptive, incisive, inferential–as applicable), and narrative text.
+## Once we have final model, email Abby for final check to run on model
+## Need to state: How we used the data, variable/model selection process, our metric for model performance
