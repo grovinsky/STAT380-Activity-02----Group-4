@@ -50,6 +50,18 @@ ggplot(insurance_data, aes(x=age, y=charges))+
     y = "Insurance charges (USD)"
   )
 
+#4. 
+ggplot(insurance_data, aes(x= priorclaims, y= charges))+
+  geom_point()+
+  theme_bw()+
+  labs(
+    x = "Number of Prior Claims",
+    y = "Insurance Charges (USD)",
+    title = "Prior Claims vs Charges based on Sex and Region"
+  )+
+  facet_grid(rows=vars(sex), cols=vars(region))
+
+
 # Inferential: confidence interval/regression line
 
 ```
@@ -62,12 +74,15 @@ At least two candidate models, professional looking discussion of the candidate 
 insuranceData <- data.frame(insurance_data)
 insuranceData <- insuranceData %>%
   mutate(
-    smokes = ifelse(smoker == "yes", 1, 0))
+    smokes = ifelse(smoker == "yes", 1, 0),
+    Sex = ifelse(sex == "female", 1, 0))
 View(insuranceData)
 insuranceModel1 <- lm(charges ~ age + smokes + priorclaims, data = insuranceData)
 summary(insuranceModel1)
 
-# Model 2:
+insuranceModeltest <- lm(charges ~ Sex + children + bmi, data = insuranceData)
+summary(insuranceModeltest)
+# Model 2
 
 ```
 
