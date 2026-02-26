@@ -14,16 +14,41 @@ A description of the data that incorporates visualizations, descriptive/incisive
 # Descriptive:
 #1. Insurance holder ages per region
 ggplot(insurance_data, aes(x = age, y = region)) +
-  geom_dotplot(binwidth = 0.2)
+  geom_dotplot(binwidth = 0.2)+
+    labs(
+    x = "Age (years)",
+    y = "Region",
+    title = "Insurance holder ages per region"
+    )+
+  theme_minimal()
+
 #2. Sex of insurance holder vs number of prior claims
 ggplot(insurance_data) +
  aes(x = priorclaims, y = sex, fill = smoker) +
  geom_boxplot() +
  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Number of Prior Claims",
+    y = "Sex",
+    colour = "Smoker",
+    title = "Sex of insurance holder vs number of prior claims based on smoker status"
+  )+
  theme_minimal()
+
 #3. Insurance holder age vs total charges
 ggplot(insurance_data, aes(x=age, y=charges))+
-  geom_hex(bins=20, linewidth = 1)
+  geom_hex(bins=20, linewidth = 1)+
+  labs(
+    x = "Age (years)",
+    y = "Insurance charges (USD)"
+  )
+
+ggplot(insurance_data, aes(x=age, y=charges))+
+  geom_point()+
+  labs(
+    x = "Age (years)",
+    y = "Insurance charges (USD)"
+  )
 
 # Inferential: confidence interval/regression line
 
@@ -45,6 +70,7 @@ summary(insuranceModel1)
 # Model 2:
 
 ```
+
 
 ## IV. Results
 A. Initial Results
