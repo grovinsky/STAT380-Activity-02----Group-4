@@ -5,13 +5,13 @@ format: pdf
 ---
 
 ## I. Introduction/Background
-
+The Nittany Valley Insurance Company wants to develop a predictive model for health insurance policy charges based on beneficiary characteristics. Understanding the factors that influece insurance costs enables more accurate pricing, risk assesment, and resource allocation. The objective is to build a linear regression model that predicts total medical charges billed to the policy based on available predictor variables. The analysis follows the modeling cycle: exploratory data analysis, model buildings, evaluation, and refinement to deliver actionable insights to the insurance company.
 
 ## II. Data Exploration
 A description of the data that incorporates visualizations, descriptive/incisive statistics, and narrative text describing the data (i.e., EDA)
 ```{r}
 #| echo: false
-
+The data contains 1,338 observations with 9 variables: age, sex, bmi, children, smoker, region, charges, month, priorclaims.
 ```
 
 ## III. Modeling Methods/Strategies
