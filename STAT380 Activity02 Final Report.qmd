@@ -25,6 +25,7 @@ ggplot(insurance_data, aes(x = age, y = region)) +
 ```
 
 2. Sex of insurance holder vs number of prior claims and smoker status
+This visualization shows the number of prior claims for male and female insurance holders, along with whether they are a smoker or not. Women have less prior claims on average, but we can see a few outliers on the boxplot at 4, 5, and 6 prior claims. For male non-smokers, the average number of prior claims is 2, while for male smokers, the average number of prior claims is only 1. For all female insurance holders, the average number of prior claims is 1.
 ```{r}
 #| echo: false
 ggplot(insurance_data) +
