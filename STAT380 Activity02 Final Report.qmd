@@ -43,7 +43,7 @@ ggplot(insurance_data) +
 ```
 
 3. Insurance holder age vs total charges
-There appear to be three levels of charges represented on this plot. The majority of insurance holders have charges ranging from $1100 to $20000. We can see the increasing linear relationship between age and insurance charges.
+There appear to be three levels of charges represented on this plot. The majority of insurance holders have charges ranging from $1100 to $20000. We can see the increasing linear relationship between age and insurance charges. There are a few outliers in terms of charges, and only two insurance holders with charges above $60000.
 ```{r}
 #| echo: false
 ggplot(insurance_data, aes(x=age, y=charges))+
