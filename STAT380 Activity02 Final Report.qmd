@@ -106,7 +106,7 @@ D. Refinements
 A paragraph to summarize your recommended model and key findings.
 
 ## VI. Author Contributions/Responsibilities
-
+Jiya - Intro/backround, Prior Claims vs Charges based on Sex and Region
 # VII. Code Appendix
 ```{r}
 #| echo: false
